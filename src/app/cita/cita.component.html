@@ -1,0 +1,98 @@
+
+<br />
+<div class="container">
+    <br />
+<h2>
+    <i>Registrar citas</i>
+</h2>
+<form (ngSubmit)= "procesar()">
+    <div class="row">
+            <div class="col">
+                <input type="text" class="form-control" name="fechaHora" placeholder="Fecha y hora" [(ngModel)] = "cita.fechaHora">
+            </div>
+            <div class="col">
+                <select class="form-control" placeholder="Espacio" name="espacio"  [(ngModel)] = "cita.espacio">
+                    <option value="" selected>Seleccione Espacio</option>
+                    <option *ngFor = "let esp of espacios" value="{{esp.nombre}}">{{esp.nombre}}</option>
+                </select>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" name="nombre" placeholder="Nombre" [(ngModel)] = "cita.nombre">
+            
+            </div>
+            <div class="col">
+                <select class="form-control" name="servicio" placeholder="Servicio" [(ngModel)] = "cita.servicio">
+                    <option value="" selected>Seleccione Servicio</option>
+                    <option *ngFor = "let serv of servicios" value="{{serv.tipo}}">{{serv.tipo}}</option>
+                </select>
+            </div>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-dark">Procesar</button>
+</form>
+
+<div class="alert alert-success" role="alert" *ngIf="ifAgregado">
+    Se registró con éxito!
+  </div>
+  <div class="alert alert-info" role="alert" *ngIf="ifActualizado">
+    Se actualizó con éxito!
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="ifEliminado">
+    Se eliminó con éxito!
+  </div>
+  
+<br />
+<h3><i>
+    Citas Registradas
+</i></h3>
+<table class="table" >
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Fecha y Hora</th>
+            <th>Espacio</th>
+            <th>Nombre</th>
+            <th>Servicio</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngIf="espacios?.length <= 0">
+            <td colspan="6" class="text-center" >
+                <div class="spinner-grow text-primary" style="width: 5rem; height: 5rem;" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                  <div class="spinner-grow text-secondary" style="width: 5rem; height: 5rem;" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                  <div class="spinner-grow text-success" style="width: 5rem; height: 5rem;" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                  <div class="spinner-grow text-danger" style="width: 5rem; height: 5rem;" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                  <div class="spinner-grow text-warning" style="width: 5rem; height: 5rem;" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                  <div class="spinner-grow text-info" style="width: 5rem; height: 5rem;" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                  <div class="spinner-grow text-light" style="width: 5rem; height: 5rem;" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                  <div class="spinner-grow text-dark" style="width: 5rem; height: 5rem;" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+            </td>
+          </tr>
+        <tr class="table-info" *ngFor = "let cit of citas">
+            <th>{{cit.id}}</th>
+            <td>{{cit.fechaHora}}</td>
+            <td>{{cit.espacio}}</td>
+            <td>{{cit.nombre}}</td>
+            <td>{{cit.servicio}}</td>
+            <td><button id="space" class="btn btn-danger" (click)="eliminarCita(cit.id)">X</button>
+                <button  class="btn btn-dark" (click)="obtenerInfoCita(cit.id)">!</button></td>
+        </tr>
+    </tbody>
+</table>

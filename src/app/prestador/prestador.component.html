@@ -1,0 +1,34 @@
+<p>Prestadores!</p>
+<hr/>
+<form (ngSubmit)= "procesar()">
+    <input type="text" name="nombre" placeholder="Nombre" [(ngModel)] = "prestador.nombre">
+    <input type="text" name="horas" placeholder="Horas de servicio" [(ngModel)] = "prestador.horas"> 
+    <input type="text" name="inicio" placeholder="yyyy-mm-dd" [(ngModel)] = "prestador.inicio">
+    <input type="text" name="fin" placeholder="yyyy-mm-dd" [(ngModel)] = "prestador.fin">
+
+    <button type="submit">Procesar</button>
+    
+</form>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Horas</th>
+            <th>Inicio</th>
+            <th>Fin</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let prest of prestadores">
+            <th>{{prest.id}}</th>
+            <td>{{prest.nombre}}</td>
+            <td>{{prest.horas}}</td>
+            <td>{{prest.inicio}}</td>
+            <td>{{prest.fin}}</td>
+            <td><button (click)="eliminarPrestadores(prest.id)">X</button>
+                <button (click)="obtenerInfoPrestador(prest.id)">!</button></td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,29 @@
+<p>Inventario!</p>
+<hr/>
+<form (ngSubmit)= "procesar()">
+    <input type="text" name="nombre" placeholder="Nombre" [(ngModel)] = "inventario.nombre">
+    <input type="text" name="horas" placeholder="Horas de servicio" [(ngModel)] = "inventario.cantidad"> 
+
+    <button type="submit">Procesar</button>
+    
+</form>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let inven of inventarios">
+            <th>{{inven.id}}</th>
+            <td>{{inven.nombre}}</td>
+            <td>{{inven.cantidad}}</td>
+            
+            <td><button (click)="eliminarInventario(inven.id)">X</button>
+                <button (click)="obtenerInfoInventario(inven.id)">!</button></td>
+        </tr>
+    </tbody>
+</table>

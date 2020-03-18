@@ -1,0 +1,5 @@
+<div *ngFor = "let est of estudiantes">
+  {{ est.nombre }}
+
+  <button type="button" (click)="eliminarEstudiante(est.id)">Eliminar</button>
+</div>
